@@ -8,28 +8,42 @@ import { store, persistor } from './src/redux/store';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import HomeScreen from './src/screens/Home/home.component';
 import SignUpScreen from './src/screens/sign-up/sign-up.component';
+import SignInScreen from './src/screens/sign-in/sign-in.component';
+import HomeScreen from './src/screens/home/home.component';
+import { StatusBar } from 'react-native';
+import WelcomeScreen from './src/screens/welcome/welcome.componet';
 
 const Stack = createStackNavigator();
+
+const mainColor = 'purple';
+const whiteColor = 'white';
+const options = { 
+	title: '', 
+	headerStyle: { backgroundColor: mainColor } ,
+	headerTintColor: whiteColor
+};
 
 const App = () => {
 	return (
 		<Provider store={store}>
 			<PersistGate persistor={persistor}>
+				<StatusBar
+					animated={true}
+					backgroundColor={mainColor} />
 				<NavigationContainer>
 					<Stack.Navigator>
 						<Stack.Screen
 							name="Welcome"
-							component={HomeScreen}
+							component={WelcomeScreen}
+							options={options}
 						/>
 						<Stack.Screen
 							name="Home"
 							component={HomeScreen}
-							options={{ title: 'Home' }}
 						/>
-						<Stack.Screen name="Sign Up" component={SignUpScreen} />
-						<Stack.Screen name="Sign In" component={SignUpScreen} />
+						<Stack.Screen name="SignUp" options={options} component={SignUpScreen} />
+						<Stack.Screen name="SignIn" options={options} component={SignInScreen} />
 					</Stack.Navigator>
 				</NavigationContainer>
 			</PersistGate>

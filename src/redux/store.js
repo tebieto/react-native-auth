@@ -9,7 +9,7 @@ import rootSaga from './root-saga';
 
 const sagaMiddleWare = createSagaMiddleware();
 const middlewares = [sagaMiddleWare];
-const isProduction = false;
+const isProduction = true;
 // eslint-disable-next-line no-undef
 if (!isProduction) {
 	middlewares.push(logger);
