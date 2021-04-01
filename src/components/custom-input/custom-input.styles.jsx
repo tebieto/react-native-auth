@@ -4,7 +4,6 @@ export const InputViewContainer = styled.View`
     width: 100%;
     border: ${({ hasError }) => hasError ? '1px solid red' : '1px solid purple'};
     border-radius: 25px;
-    margin-bottom: 20px;
 `;
 
 export const TextInputContainer = styled.TextInput` 
@@ -19,4 +18,10 @@ export const TextInputContainer = styled.TextInput`
 export const ErrorTextContainer = styled.Text`
     color: red;
     font-size: 10px;
+    padding-left: 25px;
+    padding-top: 5px;
+`;
+
+export const Wrapper = styled.View`
+    margin-bottom: 20px;
 `;

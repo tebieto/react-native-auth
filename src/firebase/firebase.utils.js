@@ -3,25 +3,24 @@ import 'firebase/firestore';
 import 'firebase/auth';
 
 const config = {
-	'apiKey': 'AIzaSyDTVvplA9keF3i-JyR_UP2W6lIKeosGF9U',
-	'authDomain': 'aphorusproduction.firebaseapp.com',
-	'databaseURL': 'https://aphorusproduction.firebaseio.com',
-	'projectId': 'aphorusproduction',
-	'storageBucket': 'aphorusproduction.appspot.com',
-	'messagingSenderId': '1092493995658',
-	'appId': '1:1092493995658:web:92c3738b87321c04300773',
-	'measurementId': 'G-XWNESY500T'
+	apiKey: 'AIzaSyDo2P3RalHW3JDXOON6vci3vyRzf_NiYtQ',
+	authDomain: 'rnauth-f1a25.firebaseapp.com',
+	projectId: 'rnauth-f1a25',
+	storageBucket: 'rnauth-f1a25.appspot.com',
+	messagingSenderId: '1012673407946',
+	appId: '1:1012673407946:web:f32370e5c9a37fc717fd33'
 };
 
 try {
-	firebase.initializeApp(config);
+	!firebase.apps.length ? firebase.initializeApp(config) : firebase.app();
 } catch(error) {
 	console.log(error);
 }
 
 
-export const auth = firebase.auth();
 export const firestore = firebase.firestore();
+firestore.settings({ experimentalForceLongPolling: true });
+export const auth = firebase.auth();
 
 export const googleProvider = new firebase.auth.GoogleAuthProvider();
 googleProvider.setCustomParameters({ prompt: 'select_account' });
@@ -31,40 +30,20 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
 	if (!userAuth) return;
 	const { displayName, email, uid } = userAuth;
 	const userRef = firestore.doc(`users/${uid}`);
-
 	const snapShot = await userRef.get();
-
 	if(!snapShot.exists) {
 		const createdAt = Date.now();
-
 		await userRef.set({
 			id: uid,
 			full_name: displayName,
 			email,
-			avatar: null,
-			security_officer: false,
-			account_balance: 0,
-			subscription: {
-				plan: null,
-				type: null,
-				expiration_date: null
-			},
-			cards: {
-				all: null,
-				current: null
-			},
-			payment_tokens: {
-				all: null,
-				current: null
-			},
-			banks: null,
 			created_at: createdAt,
+			updated_at: createdAt,
 			...additionalData
 		});
 	}
 		
 	return userRef;
-    
 };
 
 export const getcurrentUser = () => {

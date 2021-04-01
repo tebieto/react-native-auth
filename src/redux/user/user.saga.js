@@ -12,11 +12,6 @@ import {
 	connectingToServer,
 	toggleSubmittingLogin,
 	toggleSubmittingRegister,
-	initiatePayment,
-	storeActiveRequest,
-	openRequestView,
-	setPeer,
-	storeRequests,
 } from './user.action';
 
 import {
@@ -24,13 +19,7 @@ import {
 	googleProvider,
 	createUserProfileDocument,
 	getcurrentUser,
-	getCurrentUserRequests,
 } from '../../firebase/firebase.utils';
-
-export function* initiatePaymentStart({ payload }) {
-	const { type } = payload;
-	yield put(initiatePayment(type));
-}
 
 export function* getSnapShotFromUserAuth(userAuth, additionalData) {
 	try {
@@ -42,24 +31,6 @@ export function* getSnapShotFromUserAuth(userAuth, additionalData) {
 		const userSnapshot = yield userRef.get();
 		yield put(signInSuccess({ id: userSnapshot.id, ...userSnapshot.data() }));
 		yield put(connectingToServer(false));
-		const currentUser = userSnapshot.data();
-		const currentUserRequests = yield getCurrentUserRequests(currentUser);
-
-		if (currentUserRequests) {
-			const { requests, peer, requestView, activeRequest } = currentUserRequests;
-
-			if (requestView && activeRequest && peer) {
-				yield put(openRequestView(requestView));
-				yield put(storeActiveRequest(activeRequest));
-				yield put(setPeer(peer));
-			}
-
-			if (requests) {
-				yield put(storeRequests(requests));
-			}
-		}
-
-		return userSnapshot;
 	} catch (error) {
 		alert(error);
 		yield put(signInFailure(error));
@@ -87,11 +58,9 @@ export function* signInWithEmail({ payload: { email, password } }) {
 	}
 }
 
-export function* isUserAuthenticated({ hideLoader }) {
+export function* isUserAuthenticated() {
 	try {
-		if (!hideLoader) {
-			yield put(connectingToServer(true));
-		}
+		yield put(connectingToServer(true));
 		const userAuth = yield getcurrentUser();
 		if (!userAuth) {
 			yield put(signInFailure('User not found'));

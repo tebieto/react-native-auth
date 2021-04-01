@@ -1,14 +1,13 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { View } from 'react-native';
 
-import { ErrorTextContainer, InputViewContainer, TextInputContainer, } from './custom-input.styles';
+import { ErrorTextContainer, InputViewContainer, TextInputContainer, Wrapper, } from './custom-input.styles';
 
 const CustomInput = ({ handleChange, forPassword, errorText, ...otherProps }) => {
 
 	return (
-		<View style={{ width: '90%' }}>
+		<Wrapper style={{ width: '90%' }}>
 			<InputViewContainer {...otherProps}>
 				<TextInputContainer maxLength={50} secureTextEntry={forPassword ? true : false} onChange={handleChange} {...otherProps} autoCapitalize={'none'} />
 			</InputViewContainer>
@@ -17,7 +16,7 @@ const CustomInput = ({ handleChange, forPassword, errorText, ...otherProps }) =>
 					{errorText}
 				</ErrorTextContainer>: null
 			}
-		</View>
+		</Wrapper>
 	);
 }; 
 

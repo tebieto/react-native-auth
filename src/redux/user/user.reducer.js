@@ -2,7 +2,7 @@ import UserActionTypes from './user.types';
 const INITIAL_STATE = {
 	currentUser: null,
 	error: null,
-	connectingToServer: false,
+	connectingToServer: true,
 };
 
 const userReducer = (state = INITIAL_STATE, action) => {

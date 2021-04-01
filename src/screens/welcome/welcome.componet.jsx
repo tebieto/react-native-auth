@@ -7,7 +7,7 @@ const WelcomeScreen = ({ navigation }) => {
 	return (
 		<WelcomeContainer>
 			<H5Container>
-				{'Welcome, Its time. let\'s have a glimpse of the future.'}
+				{'Welcome, its time. let\'s have a glimpse of the future.'}
 			</H5Container>
 			<View>
 				<ButtonContainer>

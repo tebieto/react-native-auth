@@ -11,6 +11,7 @@ export const H5Container = styled.Text`
     text-align: center;
     margin: 100px 0;
     color: black;
+    padding: 0 20px;
 `;
 
 export const ButtonContainer = styled.TouchableOpacity`

@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 
-export const SignupContainer = styled.View`
+export const SignInContainer = styled.View`
     align-items: center;
     margin-bottom: 30px;
 `;
@@ -17,6 +17,6 @@ export const TextContainer = styled.Text`
 `;
 
 export const IntroContainer = styled.View`
-    margin: 50px 0;
+    margin: 70px 0;
     padding: 0 20px;
 `;
