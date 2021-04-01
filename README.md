@@ -1,5 +1,9 @@
 # React Native Authentication with Firebase
 
+### Builds
+* Android(Yes)
+* iOS(Coming Soon)
+
 ### Dependencies
 
 * React
@@ -22,3 +26,4 @@
 * Email/Password Authentication (Completed)
 * Google Social Login(In progress)
 * Facebook Social Login(In Progress)
+* Sign Out
