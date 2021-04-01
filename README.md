@@ -1,4 +1,4 @@
-## React Native App Authentication with Firebase
+# React Native Authentication with Firebase
 
 ### Dependencies
 
